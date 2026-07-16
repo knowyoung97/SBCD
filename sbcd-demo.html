@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBCD Korean Tofu House — Authentic Soontofu in Singapore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#C41E3A;
+    --primary-dark:#8B1428;
+    --dark:#1a1a1a;
+    --light:#F9F7F4;
+    --text:#2a2a2a;
+    --dim:#666;
+    --white:#FFFFFF;
+    --accent:#D4AF37;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins', sans-serif;
+    color:var(--text);
+    background:var(--light);
+    line-height:1.6;
+  }
+  .display{ font-family:'Playfair Display', serif; font-weight:700; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; height:auto; display:block; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--white);
+    border-bottom:2px solid var(--primary);
+    padding:14px 6%;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .logo-section{ display:flex; align-items:center; gap:12px; }
+  .logo-mark{ width:40px; height:40px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--white); font-weight:700; font-size:1.1rem; }
+  .restaurant-name{ font-size:0.95rem; font-weight:700; color:var(--primary); }
+  .header-cta{
+    background:var(--primary); color:var(--white);
+    padding:10px 18px; border-radius:4px; font-size:0.85rem; font-weight:600;
+  }
+  .header-cta:hover{ opacity:0.9; }
+  @media (max-width:640px){
+    header{ padding:12px 5%; }
+    .restaurant-name{ font-size:0.85rem; }
+    .header-cta{ padding:8px 14px; font-size:0.8rem; }
+  }
+
+  .hero{
+    position:relative; height:50vh; min-height:320px; max-height:500px;
+    background:linear-gradient(135deg, var(--primary-dark) 0%, var(--dark) 100%);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white); text-align:center; overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="1200" height="600" fill="url(%23dots)"/></svg>');
+    opacity:0.3;
+  }
+  .hero-content{
+    position:relative; z-index:2; padding:0 6%;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 6vw, 3.4rem);
+    margin-bottom:12px;
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+  }
+  .hero-tagline{
+    font-size:1.1rem;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:8px;
+    letter-spacing:0.05em;
+  }
+  .hero p{
+    font-size:1rem;
+    opacity:0.9;
+    margin-bottom:28px;
+    max-width:42ch;
+    margin-left:auto; margin-right:auto;
+  }
+  .cta-button{
+    display:inline-block;
+    background:var(--primary);
+    color:var(--white);
+    padding:16px 36px;
+    border-radius:4px;
+    font-weight:700;
+    font-size:0.95rem;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cta-button:hover{
+    transform:translateY(-2px);
+    background:var(--primary-dark);
+  }
+
+  .quick-info{
+    background:linear-gradient(135deg, #fff 0%, #fafafa 100%);
+    padding:36px 6%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:24px;
+    max-width:1200px;
+    margin:0 auto;
+    border-top:3px solid var(--primary);
+    border-bottom:3px solid var(--primary);
+  }
+  .info-item{ padding:0 12px; }
+  .info-label{ font-size:0.8rem; font-weight:900; color:var(--primary); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; }
+  .info-value{ font-size:0.96rem; color:var(--text); font-weight:600; line-height:1.5; }
+  .info-value a{ color:var(--primary); font-weight:600; }
+  @media (max-width:640px){
+    .quick-info{ grid-template-columns:1fr; gap:16px; padding:20px 5%; }
+  }
+
+  section{ max-width:1200px; margin:0 auto; padding:60px 6%; background:var(--white); }
+  .section-head h2{ font-size:clamp(1.8rem, 4vw, 2.6rem); color:var(--primary); margin-bottom:8px; }
+  .section-head p{ color:var(--text); margin-bottom:36px; max-width:56ch; line-height:1.6; font-weight:500; }
+
+  .menu-grid{ display:grid; gap:50px; }
+  .menu-category h3{ font-size:1.3rem; color:var(--primary); margin-bottom:16px; padding-bottom:8px; border-bottom:3px solid var(--primary); font-weight:600; }
+  .menu-items{ display:grid; gap:18px; }
+  .menu-item{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    padding-bottom:16px; border-bottom:1px solid rgba(0,0,0,0.08);
+  }
+  .menu-item:last-child{ border-bottom:none; }
+  .item-details{ flex:1; }
+  .item-name{ font-weight:700; color:var(--primary); margin-bottom:3px; font-size:0.98rem; }
+  .item-desc{ font-size:0.88rem; color:var(--text); line-height:1.5; font-weight:500; }
+  .item-price{ font-weight:700; color:var(--primary); white-space:nowrap; font-size:1rem; }
+
+  .about-section{
+    background:var(--white);
+    border-left:4px solid var(--primary);
+    padding:36px;
+    border-radius:6px;
+    margin:40px 0;
+  }
+  .about-section h3{ font-size:1.3rem; color:var(--primary); margin-bottom:14px; }
+  .about-section p{ color:var(--dim); line-height:1.8; margin-bottom:12px; font-size:0.95rem; }
+
+  .locations-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:24px;
+    margin-top:36px;
+  }
+  .location-card{
+    background:var(--white);
+    border:2px solid var(--primary);
+    border-radius:6px;
+    padding:24px;
+  }
+  .location-card h4{ font-size:1.05rem; color:var(--primary); margin-bottom:12px; font-weight:700; }
+  .location-detail{ font-size:0.9rem; color:var(--text); margin-bottom:8px; }
+  .location-detail a{ color:var(--primary); font-weight:600; }
+
+  .photos-section h2{ font-size:clamp(1.8rem, 4vw, 2.6rem); color:var(--primary); margin-bottom:32px; }
+  .photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:16px;
+  }
+  .photo-item{
+    aspect-ratio:1;
+    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius:8px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.9rem;
+    color:var(--white);
+    font-weight:600;
+    text-align:center;
+    padding:16px;
+  }
+  .photo-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .cta-section{
+    background:var(--primary);
+    color:var(--white);
+    padding:50px 6%;
+    text-align:center;
+    border-radius:8px;
+    margin:60px auto;
+    max-width:600px;
+  }
+  .cta-section h2{
+    font-size:1.8rem;
+    margin-bottom:14px;
+    font-family:'Playfair Display', serif;
+  }
+  .cta-section p{
+    font-size:1rem;
+    opacity:0.9;
+    margin-bottom:24px;
+    line-height:1.6;
+  }
+  .cta-btn-group{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .cta-btn-primary{
+    background:var(--white);
+    color:var(--primary);
+    padding:14px 32px;
+    border-radius:4px;
+    font-weight:700;
+    font-size:0.95rem;
+  }
+  .cta-btn-primary:hover{ opacity:0.9; }
+
+  .quiz-section{
+    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color:var(--white);
+    padding:50px 6%;
+    border-radius:8px;
+    margin:40px auto;
+    max-width:700px;
+  }
+  .quiz-section h3{ font-size:1.4rem; margin-bottom:24px; text-align:center; }
+  .quiz-group{ margin-bottom:28px; }
+  .quiz-label{ font-size:0.95rem; font-weight:600; margin-bottom:10px; display:block; }
+  .quiz-input{ width:100%; padding:12px; border:none; border-radius:4px; background:rgba(255,255,255,0.9); font-size:0.95rem; }
+  .quiz-buttons{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .quiz-btn{ padding:10px; border:2px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); border-radius:4px; cursor:pointer; font-weight:600; transition:all 0.2s; }
+  .quiz-btn.active{ background:rgba(255,255,255,0.3); border-color:var(--white); }
+  .quiz-btn:hover{ border-color:var(--white); }
+  .quiz-submit{ width:100%; padding:14px; background:var(--accent); color:var(--primary-dark); border:none; border-radius:4px; font-weight:700; cursor:pointer; font-size:0.95rem; margin-top:16px; }
+  .quiz-results{ background:var(--white); color:var(--text); padding:24px; border-radius:6px; margin-top:20px; }
+  .quiz-results h4{ color:var(--primary); margin-bottom:12px; font-size:1.05rem; }
+  .result-item{ background:rgba(196,30,58,0.08); padding:14px; border-radius:4px; margin-bottom:10px; border-left:4px solid var(--primary); }
+  .result-name{ font-weight:700; color:var(--primary); }
+  .result-desc{ font-size:0.88rem; color:var(--text); margin-top:4px; }
+  .result-price{ font-weight:700; color:var(--primary); margin-top:6px; }
+
+  footer{
+    background:var(--dark);
+    color:rgba(255,255,255,0.7);
+    padding:40px 6%;
+    text-align:center;
+    font-size:0.85rem;
+    border-top:2px solid var(--primary);
+  }
+  footer a{ color:var(--primary); font-weight:600; }
+  .social-links{ margin-top:16px; display:flex; gap:16px; justify-content:center; }
+  .social-links a{ display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:var(--primary); color:var(--white); border-radius:50%; font-size:0.9rem; }
+  .social-links a:hover{ background:var(--primary-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-section">
+    <div class="logo-mark">S</div>
+    <span class="restaurant-name">SBCD Korean Tofu House</span>
+  </div>
+  <a class="header-cta" href="https://wa.me/6596409140" target="_blank">Order Now</a>
+</header>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tagline">Uplifting and Complete Meal</div>
+    <h1 class="display">Authentic Soontofu</h1>
+    <p>Hand-made soft tofu, 10-ingredient secret broth, and authentic Korean cuisine since 2016</p>
+    <a class="cta-button" href="https://wa.me/6596409140" target="_blank">Reserve or Order on WhatsApp</a>
+  </div>
+</div>
+
+<div class="quick-info">
+  <div class="info-item">
+    <div class="info-label">Hours</div>
+    <div class="info-value">Daily 11am – 10:30pm<br>Last Order: 10pm</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Signature</div>
+    <div class="info-value">Soontofu (Soft Tofu Soup)<br>Made Fresh Daily</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Contact</div>
+    <div class="info-value"><a href="https://wa.me/6596409140">WhatsApp</a><br><a href="tel:+6563866441">+65 6386 6441</a></div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Philosophy</div>
+    <div class="info-value">Finest Ingredients<br>Best Techniques</div>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="section-head">
+    <h2>Our Menu</h2>
+    <p>From authentic soontofu to Korean BBQ — all prepared with Chef Nam's exacting standards and the finest ingredients from South Korea.</p>
+  </div>
+
+  <div class="menu-grid">
+
+    <!-- SOONTOFU -->
+    <div>
+      <h3>Soontofu — Soft Tofu Soup</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Original Beef Soontofu</div>
+            <div class="item-desc">Tender beef, silken tofu, 10-ingredient secret broth. Choice of 4 spice levels.</div>
+          </div>
+          <div class="item-price">$21.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Original Pork Soontofu</div>
+            <div class="item-desc">Slow-cooked pork, soft tofu, aromatic broth.</div>
+          </div>
+          <div class="item-price">$21.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Seafood Soontofu</div>
+            <div class="item-desc">Clam, crab, shrimp, squid, mussel. Fresh catch daily.</div>
+          </div>
+          <div class="item-price">$21.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Oyster Soontofu</div>
+            <div class="item-desc">Fresh oyster, mussel, shrimp in fragrant broth.</div>
+          </div>
+          <div class="item-price">$21.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Assorted Soontofu</div>
+            <div class="item-desc">Beef, clam, crab, shrimp, squid. The complete experience.</div>
+          </div>
+          <div class="item-price">$21.90</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMBO MEALS -->
+    <div>
+      <h3>Combo Meals</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">LA Galbi Combo ⭐</div>
+            <div class="item-desc">BBQ short rib, soontofu, rice, side dishes. Our flagship.</div>
+          </div>
+          <div class="item-price">$42.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Unagi Combo</div>
+            <div class="item-desc">Grilled eel, soontofu, rice, side dishes.</div>
+          </div>
+          <div class="item-price">$39.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Bulgogi Combo</div>
+            <div class="item-desc">Sliced rib eye, soontofu, rice, side dishes.</div>
+          </div>
+          <div class="item-price">$32.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Spicy BBQ Pork Combo</div>
+            <div class="item-desc">Marinated pork, soontofu, rice, side dishes.</div>
+          </div>
+          <div class="item-price">$32.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Spicy Baby Octopus Combo</div>
+            <div class="item-desc">Tender octopus, soontofu, rice, side dishes.</div>
+          </div>
+          <div class="item-price">$32.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Grilled Chicken Combo</div>
+            <div class="item-desc">Choice of spicy or teriyaki sauce, soontofu, rice, side dishes.</div>
+          </div>
+          <div class="item-price">$29.90</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAINS -->
+    <div>
+      <h3>Main Dishes</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">LA Galbi</div>
+            <div class="item-desc">Grilled BBQ short rib, served with rice and side dishes.</div>
+          </div>
+          <div class="item-price">$35.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Unagi</div>
+            <div class="item-desc">Grilled eel, premium glaze, with rice and side dishes.</div>
+          </div>
+          <div class="item-price">$33.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Bulgogi</div>
+            <div class="item-desc">Marinated sliced rib eye, grilled to perfection.</div>
+          </div>
+          <div class="item-price">$29.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Tteok Galbi</div>
+            <div class="item-desc">Grilled short rib patties, tender and flavorful.</div>
+          </div>
+          <div class="item-price">$29.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Spicy BBQ Pork</div>
+            <div class="item-desc">Marinated pork belly, grilled with spicy sauce.</div>
+          </div>
+          <div class="item-price">$29.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Spicy Baby Octopus</div>
+            <div class="item-desc">Tender octopus in spicy gochujang sauce.</div>
+          </div>
+          <div class="item-price">$29.90</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STARTERS -->
+    <div>
+      <h3>Starters</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Fried Dumpling</div>
+            <div class="item-desc">Crispy, golden, served with dipping sauce.</div>
+          </div>
+          <div class="item-price">$14.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Jab Chae</div>
+            <div class="item-desc">Stir-fried sweet potato noodles with beef and vegetables.</div>
+          </div>
+          <div class="item-price">$23.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Korean Seafood Pancake</div>
+            <div class="item-desc">Crispy batter with squid and prawn.</div>
+          </div>
+          <div class="item-price">$27.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Kimchi Pancake</div>
+            <div class="item-desc">Tangy kimchi in crispy batter, served with sauce.</div>
+          </div>
+          <div class="item-price">$27.90</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-details">
+            <div class="item-name">Prawn Tofu Pancake</div>
+            <div class="item-desc">Silken tofu and fresh prawn in golden pancake.</div>
+          </div>
+          <div class="item-price">$22.90</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="story">
+  <div class="section-head">
+    <h2>Our Story</h2>
+    <p>From Chef Nam's vision to your table</p>
+  </div>
+
+  <div class="about-section">
+    <h3>Chef Nam Kyoung Soo</h3>
+    <p>Our founder started his culinary journey at prestigious hotel chains in Seoul, including the Hilton Seoul, specializing in Italian cuisine. He later joined Todai USA and Singapore, one of the world's leading seafood buffet concepts.</p>
+    <p>In 2016, Chef Nam returned to his culinary roots and founded SBCD Korean Tofu House, bringing authentic, wholesome Korean cuisine to Singapore. With nearly two decades of experience in fine dining, he brings uncompromising standards to every dish.</p>
+  </div>
+
+  <div class="about-section">
+    <h3>Soontofu — The Signature Dish</h3>
+    <p>Soontofu means "soft tofu" in Korean — a humble comfort food elevated to fine dining. Our version is meticulously crafted: soft tofu is hand-made fresh daily from specially imported soybeans from Paju, South Korea, a region renowned for pristine agriculture near the DMZ.</p>
+    <p>The 10-ingredient secret broth took Chef Nam 8 years to perfect. It's boiled and left to set for days to extract natural flavor without artificial additives. This broth is the heart of every soontofu dish — available in four spice levels from mild to crazy hot.</p>
+  </div>
+
+  <div class="about-section">
+    <h3>Quality Without Compromise</h3>
+    <p>Every ingredient matters. From Paju-sourced soybeans to premium meats and fresh seafood, we maintain the highest standards. Chef Nam personally oversees ingredient sourcing, menu selections, and cooking techniques, ensuring consistency across all SBCD locations.</p>
+  </div>
+</section>
+
+<section id="locations">
+  <div class="section-head">
+    <h2>Visit Us</h2>
+    <p>Three locations across Singapore, open daily 11am – 10:30pm</p>
+  </div>
+
+  <div class="locations-grid">
+    <div class="location-card">
+      <h4>Tanjong Pagar Centre</h4>
+      <div class="location-detail">7 Wallich Street, #B1-01/02</div>
+      <div class="location-detail">Singapore 078884</div>
+      <div class="location-detail"><a href="tel:+6563866441">+65 6386 6441</a></div>
+      <div class="location-detail" style="margin-top:12px;"><a href="https://wa.me/6596409140">WhatsApp to reserve</a></div>
+    </div>
+    <div class="location-card">
+      <h4>Millenia Walk</h4>
+      <div class="location-detail">9 Raffles Boulevard, #01-114</div>
+      <div class="location-detail">Singapore 039596</div>
+      <div class="location-detail"><a href="tel:+6568736441">+65 6873 6441</a></div>
+      <div class="location-detail" style="margin-top:12px;"><a href="https://wa.me/6596409140">WhatsApp to reserve</a></div>
+    </div>
+    <div class="location-card">
+      <h4>Alexandra Retail Centre</h4>
+      <div class="location-detail">460 Alexandra Road, #02-21</div>
+      <div class="location-detail">Singapore 119963</div>
+      <div class="location-detail"><a href="tel:+6567786441">+65 6778 6441</a></div>
+      <div class="location-detail" style="margin-top:12px;"><a href="https://wa.me/6596409140">WhatsApp to reserve</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Reserve Your Table</h2>
+  <p>Experience authentic soontofu and Korean cuisine. WhatsApp us for reservations or takeaway orders.</p>
+  <div class="cta-btn-group">
+    <a class="cta-btn-primary" href="https://wa.me/6596409140" target="_blank">Message on WhatsApp</a>
+  </div>
+</div>
+
+<!-- MENU QUIZ -->
+<section style="max-width:1200px; margin:0 auto; padding:40px 6%;">
+  <div class="section-head">
+    <h2>Not sure what to order?</h2>
+    <p>Answer a few quick questions and we'll suggest the perfect dish for you</p>
+  </div>
+
+  <div class="quiz-section">
+    <h3>Find Your Perfect Dish</h3>
+    <div class="quiz-group">
+      <label class="quiz-label">How hungry are you? (1-10)</label>
+      <input type="range" id="hunger" class="quiz-input" min="1" max="10" value="5" style="cursor:pointer;">
+      <span style="font-size:0.9rem; opacity:0.9;" id="hungerVal">5</span>
+    </div>
+
+    <div class="quiz-group">
+      <label class="quiz-label">What are you craving?</label>
+      <div class="quiz-buttons">
+        <button class="quiz-btn" onclick="setMood('savory')">Savory 🍖</button>
+        <button class="quiz-btn" onclick="setMood('comfort')">Comfort Food 🥘</button>
+      </div>
+    </div>
+
+    <div class="quiz-group">
+      <label class="quiz-label">Spice level?</label>
+      <div class="quiz-buttons">
+        <button class="quiz-btn" onclick="setSpice('mild')">Mild 🟢</button>
+        <button class="quiz-btn" onclick="setSpice('spicy')">Spicy 🌶️</button>
+      </div>
+    </div>
+
+    <button class="quiz-submit" onclick="suggestDish()">Show Me Recommendations</button>
+    <div id="quizResults"></div>
+  </div>
+</section>
+
+<script>
+let moodSelected = null;
+let spiceSelected = null;
+
+document.getElementById('hunger').oninput = function() {
+  document.getElementById('hungerVal').textContent = this.value;
+};
+
+function setMood(mood) {
+  moodSelected = mood;
+  document.querySelectorAll('.quiz-buttons')[0].querySelectorAll('.quiz-btn').forEach((btn, i) => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+}
+
+function setSpice(spice) {
+  spiceSelected = spice;
+  document.querySelectorAll('.quiz-buttons')[1].querySelectorAll('.quiz-btn').forEach((btn, i) => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+}
+
+function suggestDish() {
+  const hunger = parseInt(document.getElementById('hunger').value);
+  
+  const menu = [
+    {name: 'Original Beef Soontofu', desc: 'Tender beef, silken tofu, secret broth', price: '$21.90', spice: 'mild', size: 'comfort', hunger: [5,10]},
+    {name: 'LA Galbi Combo', desc: 'BBQ short rib, soontofu, rice', price: '$42.90', spice: 'mild', size: 'savory', hunger: [7,10]},
+    {name: 'Spicy BBQ Pork', desc: 'Marinated pork, grilled with spicy sauce', price: '$29.90', spice: 'spicy', size: 'savory', hunger: [6,10]},
+    {name: 'Spicy Baby Octopus', desc: 'Tender octopus in spicy gochujang sauce', price: '$29.90', spice: 'spicy', size: 'comfort', hunger: [5,10]},
+    {name: 'Seafood Soontofu', desc: 'Clam, crab, shrimp, squid, mussel', price: '$21.90', spice: 'mild', size: 'savory', hunger: [5,10]},
+    {name: 'Jab Chae', desc: 'Stir-fried sweet potato noodles', price: '$23.90', spice: 'mild', size: 'comfort', hunger: [4,8]},
+    {name: 'Korean Seafood Pancake', desc: 'Crispy batter with squid and prawn', price: '$27.90', spice: 'mild', size: 'savory', hunger: [6,9]},
+    {name: 'Kimchi Pancake', desc: 'Tangy kimchi in crispy batter', price: '$27.90', spice: 'spicy', size: 'comfort', hunger: [5,9]}
+  ];
+
+  let suggestions = menu.filter(dish => 
+    (moodSelected === null || dish.size === moodSelected) &&
+    (spiceSelected === null || dish.spice === spiceSelected) &&
+    hunger >= dish.hunger[0] && hunger <= dish.hunger[1]
+  );
+
+  if (suggestions.length === 0) {
+    suggestions = menu.slice(0, 3);
+  }
+
+  let html = '<div class="quiz-results"><h4>✨ We recommend:</h4>';
+  suggestions.slice(0, 3).forEach(dish => {
+    html += `
+      <div class="result-item">
+        <div class="result-name">${dish.name}</div>
+        <div class="result-desc">${dish.desc}</div>
+        <div class="result-price">${dish.price}</div>
+      </div>
+    `;
+  });
+  html += '<p style="margin-top:14px; font-size:0.9rem; color:#666;">Ready to order? <a href="https://wa.me/6596409140" style="color:#C41E3A; font-weight:600;">Message us on WhatsApp</a></p></div>';
+  
+  document.getElementById('quizResults').innerHTML = html;
+}
+</script>
+
+<section id="map" style="padding:40px 6%; background:var(--white);">
+  <div class="section-head">
+    <h2>Find Us on the Map</h2>
+  </div>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7729825946433!2d103.84139!3d1.27556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da190c3f4f4f4f%3A0x1234567890abcdef!2s7%20Wallich%20Street%2C%20Tanjong%20Pagar%20Centre%2C%20Singapore%20078884!5e0!3m2!1sen!2ssg!4v1234567890" width="100%" height="400" style="border:0; border-radius:8px; margin-bottom:24px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <p style="text-align:center; color:var(--dim); font-size:0.9rem;">All locations: Tanjong Pagar Centre, Millenia Walk, Alexandra Retail Centre. Open Daily 11am–10:30pm</p>
+</section>
+<footer>
+  <div>SBCD Korean Tofu House — Authentic Korean Cuisine in Singapore · Open Daily 11am–10:30pm · <a href="https://wa.me/6596409140">WhatsApp +65 6386 6441</a></div>
+  <div class="social-links">
+    <a href="https://www.instagram.com/sbcdsingapore" target="_blank" rel="noopener" title="Instagram">📷</a>
+    <a href="https://www.facebook.com/sbcdsingapore" target="_blank" rel="noopener" title="Facebook">f</a>
+  </div>
+</footer>
+
+</body>
+</html>
